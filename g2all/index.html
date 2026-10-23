@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PS Clinic - Multi-Firmware GoldHEN Host [5.05 - 13.52]</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  :root {
+    --primary-color: #0072CE; /* PlayStation Blue */
+    --accent-color: #00D2FF;
+    --bg-color: #0d0f12;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --text-color: #ffffff;
+    --text-dim: #a0a0a0;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at center, #1a233a 0%, #0d0f12 100%);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 95vh;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .header {
+    margin-top: 20px;
+  }
+
+  .logo {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(0, 114, 206, 0.6);
+  }
+
+  .logo span {
+    color: var(--accent-color);
+  }
+
+  .sub-title {
+    font-size: 16px;
+    color: var(--text-dim);
+    margin-top: 5px;
+  }
+
+  .main-container {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 40px 20px;
+    max-width: 650px;
+    margin: auto;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(4px);
+    width: 90%;
+  }
+
+  #msgs {
+    font-size: 26px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    transition: all 0.3s ease;
+  }
+
+  .footer {
+    margin-top: 30px;
+    font-size: 14px;
+    color: var(--text-dim);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+  }
+
+  .footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin: 0 6px;
+    transition: color 0.2s;
+  }
+
+  .footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<script>
+var uaFull = navigator.userAgent;
+var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
+var isPS4 = match !== null;
+var fwVersion = isPS4 ? match[1] : "Unknown";
+var fwNum = parseFloat(fwVersion);
+
+function onScriptError() {
+    msgs.innerHTML = "Content not Found! - Clear Browser Data and Re-Install Cache ...";
+}
+
+if (!isPS4) {
+    document.addEventListener("DOMContentLoaded", () => {
+        msgs.innerHTML = "Only for PS4 with Firmware 5.05 and 7.00 to 13.52";
+    });
+} else {
+    if (window.applicationCache.status == '0') {
+        if (fwNum == 5.05 || fwNum == 5.07) {
+            window.location.replace("cache505.html");
+        } else if (fwNum >= 7.00 && fwNum <= 8.52) {
+            window.location.replace("cache700.html");
+        } else if (fwNum >= 9.00 && fwNum <= 9.60) {
+            window.location.replace("cache900.html");
+        } else if (fwNum >= 10.00 && fwNum <= 11.02) {
+            window.location.replace("cachecss.html");
+        } else if (fwNum >= 11.50 && fwNum <= 13.52) {
+            window.location.replace("cacheslopkit.html");
+        } else {
+            document.addEventListener("DOMContentLoaded", () => {
+                msgs.innerHTML = 'Unsupported Firmware: <span style="color: #ff4d4d;">' + fwVersion + '</span>';
+            });
+        }
+    } else {
+        if (fwNum == 5.05 || fwNum == 5.07) {
+            var script = document.createElement('script');
+            script.src = "505/exploit.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 7.00 && fwNum <= 8.52) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "700/alert.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 9.00 && fwNum <= 9.60) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "900/alert.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 10.00 && fwNum <= 11.02) {
+            var script = document.createElement('script');
+            script.src = "css/main.js";
+            script.onerror = onScriptError;
+            script.onload = function () {
+                setTimeout(function () {
+                    doJb();
+                }, 500);
+            };
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 11.50 && fwNum <= 12.02) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "slopkit/chain_lapse.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 12.50 && fwNum <= 13.00) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "slopkit/chain_poops.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 13.02 && fwNum <= 13.52) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "slopkit/jb.js?v=10";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+    }
+}
+</script>
+
+  <!-- Header Section -->
+  <div class="header">
+    <div class="logo">PS <span>CLINIC</span></div>
+    <div class="sub-title">Auto-Firmware GoldHEN Host [5.05 - 13.52]</div>
+  </div>
+
+  <!-- Status / Messages Container -->
+  <div class="main-container">
+    <h1 id="msgs">Loading GoldHEN v2.4b18.12... Please Wait</h1>
+  </div>
+
+  <!-- Credits / Footer -->
+  <div class="footer">
+    Special Thanks to: 
+    <a href="https://twitter.com/_AlAzif">@_AlAzif</a> | 
+    <span>ChendoChap</span> | 
+    <a href="https://x.com/Kameleonre_">@Kameleonre_</a> | 
+    <span>SiSTR0 Abc</span>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PS Clinic - PS4 9.00 FW GoldHEN Host</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  :root {
+    --primary-color: #0072CE; /* PlayStation Blue */
+    --accent-color: #00D2FF;
+    --bg-color: #0d0f12;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --text-color: #ffffff;
+    --text-dim: #a0a0a0;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at center, #1a233a 0%, #0d0f12 100%);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 95vh;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .header {
+    margin-top: 20px;
+  }
+
+  .logo {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(0, 114, 206, 0.6);
+  }
+
+  .logo span {
+    color: var(--accent-color);
+  }
+
+  .sub-title {
+    font-size: 16px;
+    color: var(--text-dim);
+    margin-top: 5px;
+  }
+
+  .main-container {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 40px 20px;
+    max-width: 650px;
+    margin: auto;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(4px);
+    width: 90%;
+  }
+
+  #msgs {
+    font-size: 26px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    transition: all 0.3s ease;
+  }
+
+  .footer {
+    margin-top: 30px;
+    font-size: 14px;
+    color: var(--text-dim);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+  }
+
+  .footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin: 0 6px;
+    transition: color 0.2s;
+  }
+
+  .footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<script>
+  history.replaceState(null, null, 'index.html');
+  var histlength = history.length;
+  history.go(-histlength);
+
+  function DLProgress(e) {
+    Percent = (Math.round(e.loaded / e.total * 100));
+    setTimeout(function() {
+      window.msgs.innerHTML = "Installing Offline Cache: " + Percent + "%";
+    }, 500);
+  }
+
+  function DisplayCacheProgress() {
+    setTimeout(function() {
+      window.msgs.innerHTML = "Cache Installed Successfully ✔";
+    }, 1500);
+    setTimeout(function() {
+      window.msgs.innerHTML = "Now Close And Re-Open Your Browser ...";
+    }, 3500);
+  }
+
+  window.applicationCache.addEventListener("progress", DLProgress, false);
+  window.applicationCache.oncached = function(e) { DisplayCacheProgress(); };
+  window.applicationCache.onupdateready = function(e) { DisplayCacheProgress(); };
+</script>
+
+  <!-- Header Section -->
+  <div class="header">
+    <div class="logo">PS <span>CLINIC</span></div>
+    <div class="sub-title">PS4 9.00 FW GoldHEN Host Edition</div>
+  </div>
+
+  <!-- Status / Messages Container -->
+  <div class="main-container">
+    <h1 id="msgs">Wait a Moment...</h1>
+  </div>
+
+  <!-- Credits / Footer -->
+  <div class="footer">
+    Special Thanks to: 
+    <a href="https://twitter.com/sleirsgoevy">@sleirsgoevy</a> | 
+    <a href="#">ChendoChap</a> | 
+    <a href="https://twitter.com/Znullptr">@Znullptr</a> | 
+    <a href="#">SiSTR0</a>
+  </div>
+
+</body>
+</html>

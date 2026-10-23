@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PS Clinic - PS4 Exploit Host Hub</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --primary-color: #0072CE; /* PlayStation Blue */
+    --accent-color: #00D2FF;
+    --bg-color: #0d0f12;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --text-color: #ffffff;
+    --text-dim: #a0a0a0;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at center, #1a233a 0%, #0d0f12 100%);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 95vh;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .header {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .logo {
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(0, 114, 206, 0.6);
+  }
+
+  .logo span {
+    color: var(--accent-color);
+  }
+
+  .sub-title {
+    font-size: 15px;
+    color: var(--text-dim);
+    margin-top: 3px;
+  }
+
+  #msgs {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin: 10px 0 20px 0;
+    min-height: 35px;
+    transition: all 0.2s ease;
+  }
+
+  .main-container {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    max-width: 750px;
+    width: 100%;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(4px);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 17px;
+    color: var(--accent-color);
+    margin: 15px 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+  }
+
+  .btn-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .btn, button {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn:hover, button:hover, .btn:focus, button:focus {
+    background: var(--primary-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 12px rgba(0, 210, 255, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-multi {
+    background: rgba(0, 114, 206, 0.3);
+    border-color: rgba(0, 210, 255, 0.4);
+  }
+
+  .btn-donation {
+    background: rgba(255, 165, 0, 0.2);
+    border-color: rgba(255, 165, 0, 0.4);
+    width: 100%;
+    max-width: 400px;
+    margin-top: 15px;
+  }
+
+  .crypto-box {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .crypto-box img {
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+  }
+
+  .crypto-addr {
+    font-size: 13px;
+    color: var(--accent-color);
+    word-break: break-all;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px;
+    border-radius: 6px;
+    user-select: all;
+  }
+
+  .footer {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin: 0 5px;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<script>
+  var histlength = history.length;
+  try {
+    history.go(-histlength + 2);
+  } catch(e) {}
+</script>
+
+  <!-- Header Section -->
+  <div class="header">
+    <div class="logo">PS <span>CLINIC</span></div>
+    <div class="sub-title">Professional PS4 Exploit Hub</div>
+  </div>
+
+  <!-- Dynamic Message Display -->
+  <h1 id="msgs">Select Your Firmware</h1>
+
+  <!-- Main Menu -->
+  <div id="menu" class="main-container">
+    
+    <div class="section-title">Automatic Host</div>
+    <div class="btn-grid">
+      <button class="btn btn-multi" onmouseover="msgs.innerHTML='PS4 GoldHEN Host for 5.05 and 7.00 to 13.52 FW - (Auto Exploit Selection)'" onmouseout="msgs.innerHTML='Select Your Firmware'" onclick="location.replace('g2all/index.html')"> GoldHEN Multi FW </button>
+    </div>
+
+    <div class="section-title">Firmware 5.05 & 6.72</div>
+    <div class="btn-grid">
+      <button class="btn" onmouseover="msgs.innerHTML='PS4 5.05 FW Host v2.5'" onmouseout="msgs.innerHTML='Select Your Firmware'" onclick="location.replace('505/index.html')"> 5.05 FW v2.5 </button>
+      <a href="672goldhen/index.html" class="btn" onmouseover="msgs.innerHTML='PS4 6.72 FW GoldHEN Host'" onmouseout="msgs.innerHTML='Select Your Firmware'"> 6.72 FW GoldHEN </a>
+      <a href="672/index.html" class="btn" onmouseover="msgs.innerHTML='PS4 6.72 FW Host v3.0'" onmouseout="msgs.innerHTML='Select Your Firmware'"> 6.72 FW v3.0 </a>
+    </div>
+
+    <div class="section-title">Firmware 9.00</div>
+    <div class="btn-grid">
+      <a href="900goldhen/index.html" class="btn" onmouseover="msgs.innerHTML='PS4 9.00 FW GoldHEN Host - (FontFaceSet Webkit)'" onmouseout="msgs.innerHTML='Select Your Firmware'"> 9.00 FW GoldHEN </a>
+      <a href="900v3/index.html" class="btn" onmouseover="msgs.innerHTML='PS4 9.00 FW Host v3.0 - (FontFaceSet Webkit)'" onmouseout="msgs.innerHTML='Select Your Firmware'"> 9.00 FW v3.0 </a>
+    </div>
+
+    <div class="section-title">Utilities</div>
+    <div class="btn-grid">
+      <button class="btn" onmouseover="msgs.innerHTML='Restore a Host to User’s Guide without using DNS'" onmouseout="msgs.innerHTML='Select Your Firmware'" onclick="location.replace('restore/index.html')"> Restore Host </button>
+    </div>
+
+    <div style="text-align: center;">
+      <button class="btn btn-donation" onmouseover="msgs.innerHTML='If you like my work you can support me with a donation.'" onmouseout="msgs.innerHTML='Select Your Firmware'" onclick="donations()"> For Donations (Cryptocurrencies) </button>
+    </div>
+
+  </div>
+
+  <!-- Crypto Donations View -->
+  <div id="crypto" class="main-container" style="display: none;">
+    <div class="section-title" style="margin-top: 0;">Cryptocurrency Donations</div>
+    
+    <div class="crypto-box">
+      <h1 style="font-size: 16px; color: var(--accent-color); margin-bottom: 10px;">Donate with Bitcoin (BTC)</h1>
+      <img src="btc.jpg" width="130" height="130" alt="BTC QR">
+      <div class="crypto-addr">bc1q6cnsykmvem6zgw8wag3ygee0jkhtxj6rkp2nrm</div>
+    </div>
+
+    <div class="crypto-box">
+      <h1 style="font-size: 16px; color: var(--accent-color); margin-bottom: 10px;">Donate with Ethereum (ETH)</h1>
+      <img src="eth.jpg" width="130" height="130" alt="ETH QR">
+      <div class="crypto-addr">0x7Ae1825ddE196925dB8B7832F436cA0eAeaF932c</div>
+    </div>
+
+    <button class="btn" onclick="load_menu()" style="margin-top: 10px;"> Return </button>
+  </div>
+
+  <!-- Footer Credits -->
+  <div class="footer">
+    Designed by: <a href="https://twitter.com/GamerHack93">@GamerHack93</a> | A special thanks to all the devs on the scene.
+  </div>
+
+<script>
+function donations(){
+  document.getElementById("crypto").style.display = "block";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("msgs").innerHTML = "Support the Developer";
+}
+
+function load_menu(){
+  document.getElementById("menu").style.display = "block";
+  document.getElementById("crypto").style.display = "none";
+  document.getElementById("msgs").innerHTML = "Select Your Firmware";
+}
+</script>
+
+</body>
+</html>
